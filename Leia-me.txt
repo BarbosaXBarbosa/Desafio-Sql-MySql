@@ -1,0 +1,4 @@
+abrir o workbench
+abrir o scritp sql Emarket.sql
+executar este arquivo
+ler o documento do word e realizar os selects em nova query.
