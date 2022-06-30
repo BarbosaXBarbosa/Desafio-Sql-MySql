@@ -115,4 +115,66 @@ ORDER BY EmpregadoID;
  --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #           Consultas Queries - Parte II
+## Produtos
+
+# 1)	Obtenha a lista de todos os produtos em ordem decrescente por preço unitário.
+SELECT ProdutoNome, PrecoUnitario
+FROM produtos
+ORDER BY PrecoUnitario DESC;
+
+# 2) Obtenha a lista dos 5 melhores produtos cujo preço unitário é o mais "Caro".
+SELECT ProdutoNome, PrecoUnitario
+FROM produtos
+ORDER BY PrecoUnitario DESC
+LIMIT 0, 5;
+
+# 3) Obtenha um top 10 dos produtos com mais unidades em estoque.
+SELECT ProdutoNome, UnidadesEstoque
+FROM produtos
+ORDER BY UnidadesEstoque DESC
+LIMIT 0, 10;
+
+## Faturas
+
+# 1) Obtenha uma lista de FaturaId, Produto, Quantidade.
+
+SELECT *
+FROM detalhefatura;
+
+SELECT 
+A.FaturaId,
+B.ProdutoNome, 
+A.Quantidade
+FROM detalhefatura A INNER JOIN produtos B
+ON A.ProdutoID = B.ProdutoID;
+
+# 2) Classifique a lista acima por Quantidade decrescente.
+SELECT 
+A.FaturaId,
+B.ProdutoNome, 
+A.Quantidade
+FROM detalhefatura A INNER JOIN produtos B
+ON A.ProdutoID = B.ProdutoID
+ORDER BY Quantidade DESC;
+
+# 3) Filtre a mesma lista apenas para os produtos cuja quantidade esteja entre 50 e 100.
+SELECT 
+A.FaturaId,
+B.ProdutoNome, 
+A.Quantidade
+FROM detalhefatura A INNER JOIN produtos B
+ON A.ProdutoID = B.ProdutoID
+WHERE Quantidade BETWEEN 50 AND 100
+ORDER BY Quantidade DESC;
+
+# 4) Em outra nova consulta, obtenha uma lista com os seguintes nomes de coluna: Número da fatura (FaturaId), Produto (ProdutoId), Total (Preço Unitário * Quantidade)
+SELECT
+FaturaID,
+ProdutoID,
+PrecoUnitario * Quantidade AS total
+FROM detalhefatura;
+
+
+
+
 
